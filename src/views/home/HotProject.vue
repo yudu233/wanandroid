@@ -1,8 +1,6 @@
 <template>
 	<div class="home">
-		<div class="header">
-			<Navigation></Navigation>
-		</div>
+		<router-view></router-view>
 		<div class="container">
 			<LeftView></LeftView>
 			<RightView></RightView>

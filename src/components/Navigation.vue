@@ -1,29 +1,22 @@
 <template>
-	<el-menu class="navigation" mode="horizontal" :default-active="activeIndex" @select="navSelect">
-		<el-menu-item index="1">首页</el-menu-item>
-		<el-menu-item index="2">广场</el-menu-item>
-		<el-menu-item index="3">导航</el-menu-item>
-		<el-menu-item index="4">问答</el-menu-item>
-		<el-menu-item index="5">体系</el-menu-item>
-		<el-menu-item index="6">项目</el-menu-item>
-		<el-menu-item index="7">公众号</el-menu-item>
-		<el-menu-item index="8">项目分类</el-menu-item>
-		<el-menu-item index="9">工具</el-menu-item>
-		<el-menu-item index="10">收藏</el-menu-item>
+	<el-menu class="navigation" mode="horizontal" :default-active="'/home'" router unique-opened>
+		<template v-for="(item,index) in menuData">
+			<el-menu-item :index="item.path"  :key="index">{{item.name}}</el-menu-item>
+		</template>
 	</el-menu>
 </template>
 
 <script>
+	import menuRouter from '../router/menu_router.js'
+	
 	export default {
 		data() {
 			return {
-				activeIndex: "1"
+				 menuData:[]
 			}
 		},
-		methods: {
-			navSelect(key, keyPath) {
-				console.log(key, keyPath);
-			}
+		async created() {
+			this.menuData  = await menuRouter
 		}
 	}
 </script>

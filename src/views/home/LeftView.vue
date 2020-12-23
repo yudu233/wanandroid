@@ -6,13 +6,19 @@
 			</el-carousel-item>
 		</el-carousel>
 		<AnnouncementView></AnnouncementView>
-		<el-tabs v-model="hot" @tab-click="tabSelect">
+		<el-tabs v-model="select" :before-leave="tabSelect">
 			<el-tab-pane label="热门博文" name="hotArticle">
-				<div v-for="articleItem in topArticles">
-					<HotArticleItem :data="articleItem"></HotArticleItem>
-				</div>
+				<router-view name="hotArticle">
+					<div v-for="articleItem in topArticles">
+						<HotArticleItem :data="articleItem"></HotArticleItem>
+					</div>
+				</router-view>
 			</el-tab-pane>
-			<el-tab-pane label="热门项目" name="hotProject">热门项目</el-tab-pane>
+			<el-tab-pane label="热门项目" name="hotProject">
+				<router-view name="hotProject">
+					
+				</router-view>
+			</el-tab-pane>
 		</el-tabs>
 	</div>
 </template>
@@ -20,7 +26,9 @@
 <script>
 	import AnnouncementView from './AnnouncementView.vue'
 	import HotArticleItem from '../../components/HotArticleItem.vue'
-	import {getHomeTopArticle} from '../../api/home.js'
+	import {
+		getHomeTopArticle
+	} from '../../api/home.js'
 
 	export default {
 		components: {
@@ -30,13 +38,18 @@
 		data() {
 			return {
 				banner: [],
-				topArticles:[],
-				hot: "hotArticle"
+				topArticles: [],
+				select: "hotArticle"
 			}
 		},
 		methods: {
-			tabSelect(tab, event) {
-				console.log(tab, event);
+			async tabSelect(activeName) {
+				if (activeName === "hotArticle") {
+					const topArticles = await getHomeTopArticle()
+					this.topArticles = topArticles.data
+				} else if (activeName === "hotProject") {
+					// this.$router.push("/hotProject")
+				}
 			}
 		},
 
