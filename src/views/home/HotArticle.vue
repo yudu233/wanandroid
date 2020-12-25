@@ -1,10 +1,11 @@
 <template>
 	<div class="home">
-		<router-view></router-view>
+		hotarticle
+		<!-- <router-view></router-view>
 		<div class="container">
 			<LeftView></LeftView>
 			<RightView></RightView>
-		</div>
+		</div> -->
 	</div>
 </template>
 

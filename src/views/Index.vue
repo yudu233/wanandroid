@@ -7,7 +7,7 @@
 				</template>
 			</el-menu>
 		</div>
-		<router-view name="/home"></router-view>
+		<router-view></router-view>
 
 	</div>
 </template>

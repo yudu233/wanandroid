@@ -6,18 +6,21 @@
 			</el-carousel-item>
 		</el-carousel>
 		<AnnouncementView></AnnouncementView>
+		<banner></banner>
 		<el-tabs v-model="select" :before-leave="tabSelect">
 			<el-tab-pane label="热门博文" name="hotArticle">
-				<router-view name="hotArticle">
+				<HotArticle></HotArticle>
+				<!-- <router-view name="hotArticle">
 					<div v-for="articleItem in topArticles">
 						<HotArticleItem :data="articleItem"></HotArticleItem>
 					</div>
-				</router-view>
+				</router-view> -->
 			</el-tab-pane>
 			<el-tab-pane label="热门项目" name="hotProject">
-				<router-view name="hotProject">
+				<HotProject></HotProject>
+				<!-- <router-view name="hotProject">
 					
-				</router-view>
+				</router-view> -->
 			</el-tab-pane>
 		</el-tabs>
 	</div>
@@ -26,6 +29,8 @@
 <script>
 	import AnnouncementView from './AnnouncementView.vue'
 	import HotArticleItem from '../../components/HotArticleItem.vue'
+	import HotProject from './HotProject.vue'
+	import HotArticle from './HotArticle.vue'
 	import {
 		getHomeTopArticle
 	} from '../../api/home.js'
@@ -33,7 +38,9 @@
 	export default {
 		components: {
 			AnnouncementView,
-			HotArticleItem
+			HotArticleItem,
+			HotProject,
+			HotArticle
 		},
 		data() {
 			return {
@@ -45,8 +52,8 @@
 		methods: {
 			async tabSelect(activeName) {
 				if (activeName === "hotArticle") {
-					const topArticles = await getHomeTopArticle()
-					this.topArticles = topArticles.data
+					// const topArticles = await getHomeTopArticle()
+					// this.topArticles = topArticles.data
 				} else if (activeName === "hotProject") {
 					// this.$router.push("/hotProject")
 				}

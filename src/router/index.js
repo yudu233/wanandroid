@@ -16,12 +16,8 @@ const main_router = [
   {
     path: '/index',
     component: Index,
-	children:[
-		{
-			path:'home',
-			component: Home,
-		}
-	]
+	redirect: 'index/home',
+	children: menuRouter
   }
 ]
 // const routes = [{
@@ -39,11 +35,13 @@ const main_router = [
 // 	}]
 // }]
 
-const routes = baseRoutes.concat(menuRouter,main_router);
+// const routes = baseRoutes.concat(menuRouter,main_router);
+console.log(main_router);
 
 const router = new VueRouter({
-	routes,
+	routes:main_router,
 	mode: 'history'
 })
 
+console.log(router);
 export default router

@@ -4,50 +4,43 @@ import HotProject from '../views/home/HotProject.vue'
 
 export default [
  {
-  	path: '/home',
+  	path: 'home',
   	component: Home,
-	name:"首页",
-  	children: [{
-  		path: 'hotArticle',
-  		component: HotArticle
-  	}, {
-  		path: 'hotProject',
-  		component: HotProject
-  	}]
+	name:"首页"
   },{
-	  path : '/square',
+	  path : 'square',
 	  component : Home,
 	  name:'广场'
   },{
-	  path : '/navigation',
+	  path : 'navigation',
 	  component : Home,
 	  name:'导航'
   },{
-	  path : '/faq',
+	  path : 'faq',
 	  component : Home,
 	  name:'问答'
   },{
-	  path : '/system',
+	  path : 'system',
 	  component : Home,
 	  name:'体系'
   },{
-	  path : '/project',
+	  path : 'project',
 	  component : Home,
 	  name:'项目'
   },{
-	  path : '/officialAccounts',
+	  path : 'officialAccounts',
 	  component : Home,
 	  name:'公众号'
   },{
-	  path : '/projectClassify',
+	  path : 'projectClassify',
 	  component : Home,
 	  name:'项目分类'
   },{
-	  path : '/tools',
+	  path : 'tools',
 	  component : Home,
 	  name:'工具'
   },{
-	  path : '/collection',
+	  path : 'collection',
 	  component : Home,
 	  name:'收藏'
   }
