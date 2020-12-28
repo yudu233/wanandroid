@@ -1,26 +1,19 @@
 <template>
 	<div class="left">
+		<!-- 轮播图 -->
 		<el-carousel indicator-position="outside">
 			<el-carousel-item v-for="item in banner" :key="item.id">
 				<el-image class="banner_iamge" :src="item.imagePath"></el-image>
 			</el-carousel-item>
 		</el-carousel>
+		<!-- 公告 -->
 		<AnnouncementView></AnnouncementView>
-		<banner></banner>
 		<el-tabs v-model="select" :before-leave="tabSelect">
 			<el-tab-pane label="热门博文" name="hotArticle">
 				<HotArticle></HotArticle>
-				<!-- <router-view name="hotArticle">
-					<div v-for="articleItem in topArticles">
-						<HotArticleItem :data="articleItem"></HotArticleItem>
-					</div>
-				</router-view> -->
 			</el-tab-pane>
 			<el-tab-pane label="热门项目" name="hotProject">
 				<HotProject></HotProject>
-				<!-- <router-view name="hotProject">
-					
-				</router-view> -->
 			</el-tab-pane>
 		</el-tabs>
 	</div>
@@ -28,24 +21,17 @@
 
 <script>
 	import AnnouncementView from './AnnouncementView.vue'
-	import HotArticleItem from '../../components/HotArticleItem.vue'
 	import HotProject from './HotProject.vue'
 	import HotArticle from './HotArticle.vue'
-	import {
-		getHomeTopArticle
-	} from '../../api/home.js'
-
 	export default {
 		components: {
 			AnnouncementView,
-			HotArticleItem,
 			HotProject,
 			HotArticle
 		},
 		data() {
 			return {
 				banner: [],
-				topArticles: [],
 				select: "hotArticle"
 			}
 		},
@@ -63,8 +49,6 @@
 		async created() {
 			const data = await this.$http.get("banner/json")
 			this.banner = data.data
-			const topArticles = await getHomeTopArticle()
-			this.topArticles = topArticles.data
 		}
 	}
 </script>

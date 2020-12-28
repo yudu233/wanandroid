@@ -1,24 +1,30 @@
 <template>
 	<div class="home">
-		hotproject
-		<!-- <router-view></router-view>
-		<div class="container">
-			<LeftView></LeftView>
-			<RightView></RightView>
-		</div> -->
+		<div v-for="projectItem in projectsData">
+			<HotProjectItem :data="projectItem"></HotProjectItem>
+		</div>
 	</div>
 </template>
 
 <script>
-	import Navigation from '../../components/Navigation.vue'
-	import LeftView from './LeftView.vue'
-	import RightView from './RightView.vue'
+	import HotProjectItem from '../../components/HotProjectItem.vue'
+	import {
+		getHomeHotProject
+	} from '../../api/home.js'
 
 	export default {
 		components: {
-			Navigation,
-			LeftView,
-			RightView
+			HotProjectItem
+		},
+		data() {
+			return {
+				projectsData: [],
+			}
+		},
+		async created() {
+			const topProjectsData = await getHomeHotProject(0)
+			this.projectsData = topProjectsData.data.datas
+			console.log(this.projectsData);
 		}
 	}
 </script>
@@ -29,14 +35,5 @@
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
-	}
-	.container {
-		margin: auto;
-		margin-top: 1.25rem;
-		display: flex;
-		justify-content: center;
-		flex-direction: row;
-		width: 80%;
-		height: 100%;
 	}
 </style>

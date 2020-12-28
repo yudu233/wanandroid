@@ -36,7 +36,6 @@ const main_router = [
 // }]
 
 // const routes = baseRoutes.concat(menuRouter,main_router);
-console.log(main_router);
 
 const router = new VueRouter({
 	routes:main_router,
